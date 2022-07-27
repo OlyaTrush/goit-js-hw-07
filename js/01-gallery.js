@@ -42,7 +42,6 @@ galleryContainer.addEventListener("click", onImgClick);
 let modalImg;
 
 function onImgClick(e) {
-
   e.preventDefault();
 
   if (e.target.nodeName !== "IMG") {
@@ -52,15 +51,15 @@ function onImgClick(e) {
   modalImg = basicLightbox.create(
     `
     <img src="${e.target.dataset.source}" width="800" height="600">
- `);
+ `
+  );
 
   modalImg.show();
 
   modalClose();
-
 }
 
-function modalClose () {
+function modalClose() {
   if (modalImg.visible()) {
     window.addEventListener("keydown", onCloseKeyEsc);
   }
@@ -73,5 +72,3 @@ function modalClose () {
     }
   }
 }
-
-
