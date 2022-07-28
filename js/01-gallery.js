@@ -51,24 +51,22 @@ function onImgClick(e) {
   modalImg = basicLightbox.create(
     `
     <img src="${e.target.dataset.source}" width="800" height="600">
- `
+ `,
+    {
+      onShow: (modalImg) => {
+        window.addEventListener("keydown", onCloseKeyEsc);
+      },
+      onClose: (modalImg) => {
+        window.removeEventListener("keydown", onCloseKeyEsc);
+      },
+    }
   );
 
   modalImg.show();
-
-  modalClose();
 }
 
-function modalClose() {
-  if (modalImg.visible()) {
-    window.addEventListener("keydown", onCloseKeyEsc);
-  }
-
-  function onCloseKeyEsc(e) {
-    if (e.code === "Escape") {
-      modalImg.close();
-      window.removeEventListener("keydown", onCloseKeyEsc);
-      return;
-    }
+function onCloseKeyEsc(e) {
+  if (e.code === "Escape") {
+    modalImg.close();
   }
 }
